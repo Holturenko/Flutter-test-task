@@ -9,32 +9,46 @@ class MyApp extends StatefulWidget {
 }
 
 class _MyAppState extends State<MyApp> {
-  Color mainColor = Colors.deepPurple;
-  void newColor(){
-    var randomNum = Random();
+  Color backGroundColor = Colors.deepPurple;
+  Color textColor = Colors.white;
+  var randomNum = Random();
+
+  void backGroundColorGenerator() {
     setState(() {
-     mainColor =  Color.fromRGBO(randomNum.nextInt(160),
+      backGroundColor = Color.fromRGBO(randomNum.nextInt(160),
           randomNum.nextInt(160), randomNum.nextInt(160), 1);
+    });
+  }
+
+  void textColorGenerator() {
+    int minRange = 150;
+    int maxRange = 255;
+    setState(() {
+      textColor = Color.fromRGBO(
+          minRange + randomNum.nextInt(maxRange - minRange),
+          minRange + randomNum.nextInt(maxRange - minRange),
+          minRange + randomNum.nextInt(maxRange - minRange),
+          1);
     });
   }
 
   @override
   Widget build(BuildContext context) {
-    print(mainColor.toString());
     return MaterialApp(
       title: 'Test Task',
       home: Scaffold(
-        // appBar: AppBar(
-        //   title: Text('Test Task'),
-        // ),
         body: GestureDetector(
-          onTap: newColor,
+          onTap: backGroundColorGenerator,
+          onLongPress: textColorGenerator,
           child: Container(
-            color: mainColor,
+            color: backGroundColor,
             child: Center(
               child: Text(
                 'Hey There!',
-                style: TextStyle(fontSize: 42, fontWeight: FontWeight.bold, color: Colors.white),
+                style: TextStyle(
+                    fontSize: 48,
+                    fontWeight: FontWeight.bold,
+                    color: textColor),
               ),
             ),
           ),
