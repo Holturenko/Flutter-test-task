@@ -1,6 +1,7 @@
 # Test Task
 
-A new Flutter project.
+Long press to change text color,
+One tap to change background color.
 
 ## Getting Started
 
